@@ -1,8 +1,14 @@
-var express = require('express');
-var app = express();
+//Install express server
+const express = require('express');
+const path = require('path');
 
-app.use(express.static('./dist/image-editor'));
+const app = express();
+
+// Serve only the static files form the dist directory
+app.use(express.static(__dirname + '/dist/image-editor'));
 app.get('/*', function (req, res) {
-  res.sendFile('index.html', { root: 'dist/image-editor/' });
+  res.sendFile(path.join(__dirname + '/dist/image-editor/index.html'));
 });
+
+// Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 8080);
