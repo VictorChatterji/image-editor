@@ -11,7 +11,7 @@ import { FormControl } from '@angular/forms';
 })
 export class AppComponent implements AfterViewInit {
   private onDestroy = new Subject<void>();
-  @ViewChild('myCanvas', { static: false }) myCanvas: ElementRef;
+  @ViewChild('myCanvas') myCanvas: ElementRef;
   context: CanvasRenderingContext2D;
   images: Array<any>;
   get canvasRef(): any {
