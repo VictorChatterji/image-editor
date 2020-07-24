@@ -1,27 +1,33 @@
-# ImageEditor
+# Image Editor - Using HTML5 Canvas and Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.0.
+This project is inspired to build Image editing tool using HTML5 Canvas API, Angular and
+Angular Material for UI infrastructure and behaviour
 
-## Development server
+# Requirements
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+This project requires
+- `node v(10.15.1)` Javascript Runtime used to run javascript outside browser environment
+- `npm v(6.4.1)` Node Package Manager for installing `node` packages
+- `Angular CLI v(10.0.4)`
+- Information regarding the packages can be found in `package.json` file. Make sure your local machine `typescript` version matches on `package.json` file
 
-## Code scaffolding
+# Developing project on local machine
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Clone the codebase `git clone https://github.com/VictorChatterji/image-editor.git`
+- Change the directory by `cd image-editor`
+- Run `npm install`, which will install all dependencies of the angular project from npm
+- Run `ng serve -o`. which will open localhost link in the default browser of IDE
 
-## Build
+# Author
+- Victor Neerugatti
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
+# Overview
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- This project is still at developmental stage
+- Features developed till date
+    1. Fetch Images from remote server using Angular service and displaying in UI using Angular Material CDK Virtual Scrolling (Loading images on scrolling)
+    2. Drag and drop images into `canvas` tag in a way to fit as per aspect ratio and blur sides
+    3. Feature of changing the aspect ratio of `canvas`
+    4. Ability to add text into the canvas and change text parameters (Fill/Stroke etc.,) still in development phase
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

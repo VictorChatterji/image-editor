@@ -1,21 +1,62 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<!-- <router-outlet></router-outlet> -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-md-3 p-2 d-flex flex-row flex-wrap align-items-center justify-content-center">
+      <cdk-virtual-scroll-viewport itemSize="5" class="example-viewport">
+        <ng-container *cdkVirtualFor="let image of images;let i =index">
+          <img id="drag{{i+1}}" [src]="image.download_url" alt="{{image.author}}" class="img-thumbnail" height="300"
+            width="300" draggable="true" (dragstart)="drag($event)">
+        </ng-container>
+      </cdk-virtual-scroll-viewport>
+    </div>
+    <div
+      class="col-sm-12 offset-md-3 col-md-7 border-right position-fixed py-2 d-flex flex-row align-items-center justify-content-center full-height">
+      <canvas #myCanvas (drop)="drop($event)" (dragover)="allowDrop($event)"></canvas>
+      <mat-divider></mat-divider>
 
-<router-outlet></router-outlet>
+    </div>
+    <div
+      class="col-sm-12 offset-md-10 col-md-2 border-right position-fixed py-2 d-flex flex-column align-items-center justify-content-start full-height">
+      <div class="full-width">
+        <h6>Switch Aspect Ratio</h6>
+        <mat-button-toggle-group #group="matButtonToggleGroup" (change)="setAspectRatio(group.value)">
+          <mat-button-toggle *ngFor="let orient of ['potrait', 'landscape'];" [value]="orient"
+            [checked]="selectedAspectRatio === orient">
+            <mat-icon [ngStyle]="{'transform':orient === 'potrait' ? 'rotateZ(90deg)' : '' }">crop_16_9</mat-icon>
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+      <div class="full-width py-3">
+        <!-- <h6>Rotate</h6>
+        <mat-button-toggle-group #rotate="matButtonToggleGroup" (change)="rotate(rotate.value)">
+          <mat-button-toggle value="left">
+            <mat-icon>rotate_left</mat-icon>
+          </mat-button-toggle>
+          <mat-button-toggle value="right">
+            <mat-icon>rotate_right</mat-icon>
+          </mat-button-toggle>
+        </mat-button-toggle-group> -->
+        <h6>Insert Text</h6>
+        <!-- <mat-button-toggle-group #text="matButtonToggleGroup" (change)="drawText()">
+          <mat-button-toggle>
+            <mat-icon>title</mat-icon>
+          </mat-button-toggle>
+        </mat-button-toggle-group> -->
+        <p class="pt-3 mb-0">
+          <mat-form-field appearance="fill">
+            <mat-label>Enter the text</mat-label>
+            <textarea matInput [formControl]="textCtrl"></textarea>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="fill">
+            <mat-label>Fill Or Stroke</mat-label>
+            <mat-select [formControl]="fillStrokeCtrl">
+              <mat-option *ngFor="let textSetting of ['Fill', 'Stroke', 'Both']" [value]="textSetting">{{textSetting}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
