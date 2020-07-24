@@ -17,6 +17,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "hammerjs"
+            ],
             "outputPath": "dist/image-editor",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -127,5 +130,8 @@
       }
     }
   },
-  "defaultProject": "image-editor"
+  "defaultProject": "image-editor",
+  "cli": {
+    "analytics": "36952440-fe93-4550-8637-986c556378b5"
+  }
 }
